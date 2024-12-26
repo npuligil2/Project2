@@ -6,7 +6,17 @@ sources:
     schema: jaffle_shop
     tables:
       - name: customers
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
       - name: orders
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
         loaded_at_field: _ETL_LOADED_AT
         freshness: 
         error_after: {count: 2, period: day}
