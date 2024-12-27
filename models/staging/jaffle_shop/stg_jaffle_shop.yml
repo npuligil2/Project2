@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: Staging table for customers
+    columns:
+      - name: CUSTOMER_ID
+        description: Customer Table Primary Key
+        tests:
+          - unique
+          - not_null
+  - name: stg_jaffle_shop__orders
+    description: Staging table for orders
+    columns:
+      - name: ORDER_ID
+        description: Order Table Primary Key
+        tests:
+          - unique
+          - not_null
+      - name: STATUS
+        description: "doc block does NOT Work"
+        tests:
+          - accepted_values:
+              values: ["returned","completed","return_pending","shipped","placed"]
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_jaffle_shop__customers')
+              field: customer_id
